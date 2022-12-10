@@ -7,8 +7,10 @@ const Login = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
-      const token = localStorage.getItem('id_token');
-      Auth.login(token);
+      const response = await fetch('/api/user/login', () => {
+        return response.json();
+      });
+      Auth.login(response);
     } catch (err) {
       console.log(`Error in fetch request ${err}`);
     }
@@ -29,26 +31,26 @@ const Login = () => {
         onSubmit={handleFormSubmit}
       >
         <div className='mb-4'>
-          <label className='' htmlFor='formEmail'>
+          <label className='' htmlFor='email'>
             Email
           </label>
           <input
             className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-            id='formEmail'
+            id='email'
             type='email'
-            name='formEmail'
+            name='email'
             onChange={handleChange}
           />
         </div>
         <div className='mb-4'>
-          <label className='' htmlFor='formPassword'>
+          <label className='' htmlFor='password'>
             Password
           </label>
           <input
             className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-            id='formPassword'
+            id='password'
             type='password'
-            name='formPassword'
+            name='password'
             onChange={handleChange}
           />
         </div>

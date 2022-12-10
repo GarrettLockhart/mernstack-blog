@@ -1,5 +1,5 @@
 const { User } = require('../models');
-const { signToken } = require('../utils/auth');
+const { signToken, authMiddleware } = require('../utils/auth');
 
 module.exports = {
   getUsers(req, res) {
@@ -13,5 +13,27 @@ module.exports = {
     }
     const token = signToken(user);
     res.json({ token, user });
+  },
+
+  async loginUser(req, res) {
+    try {
+      const user = await User.findOne({ email: req.body.email });
+
+      if (!user) {
+        res.status(404).json({ message: 'No user found with that email' });
+      }
+
+      const checkPassword = await user.isCorrectPassword(user.password);
+
+      if (!checkPassword) {
+        res.status(500).json({ message: 'Something went wrong' });
+      }
+
+      const token = signToken(user.email);
+      res.json(token);
+      return { token, user };
+    } catch (err) {
+      console.log(err);
+    }
   }
 };
