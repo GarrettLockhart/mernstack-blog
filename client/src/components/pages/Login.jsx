@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
-import Auth from '../../utils/auth';
 
 const Login = () => {
   const [formState, setFormState] = useState({ email: '', password: '' });
 
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
+  const handleFormSubmit = async () => {
     try {
-      const response = await fetch('/api/user/login', () => {
-        return response.json();
+      const res = await fetch('/api/user/login', {
+        method: 'POST',
+        headers: { 'Content-type': 'application/json' },
+        body: { email: formState.email, password: formState.password }
       });
-      Auth.login(response);
+      console.log(res);
+      const token = await res.json();
+      console.log(token);
+      document.cookie = `token=${token}`;
     } catch (err) {
-      console.log(`Error in fetch request ${err}`);
+      console.log(err);
     }
   };
 

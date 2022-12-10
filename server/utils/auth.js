@@ -1,39 +1,27 @@
 const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv');
+dotenv.config();
 
-// set token secret and expiration date
-const secret = 'mysecretsshhhhh';
 const expiration = '2h';
 
 module.exports = {
-  // function for our authenticated routes
-  authMiddleware: function (req, res, next) {
-    // allows token to be sent via  req.query or headers
-    let token = req.query.token || req.headers.authorization;
-
-    // ["Bearer", "<tokenvalue>"]
-    if (req.headers.authorization) {
-      token = token.split(' ').pop().trim();
-    }
-
-    if (!token) {
-      return res.status(400).json({ message: 'You have no token!' });
-    }
-
-    // verify token and get user data out of it
-    try {
-      const { data } = jwt.verify(token, secret, { maxAge: expiration });
-      req.user = data;
-    } catch {
-      console.log('Invalid token');
-      return res.status(400).json({ message: 'invalid token!' });
-    }
-
-    // send to next endpoint
-    next();
+  generateAccessToken(email) {
+    return jwt.sign(email, process.env.TOKEN_SECRET, { expiresIn: expiration });
   },
-  signToken: function ({ email }) {
-    const payload = { email };
+  authenticateToken(req, res, next) {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
 
-    return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
+    if (token == null) return res.sendStatus(401);
+
+    jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {
+      console.log(err);
+
+      if (err) return res.sendStatus(403);
+
+      req.user = user;
+
+      next();
+    });
   }
 };
