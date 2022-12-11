@@ -1,11 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Auth from '../../utils/auth';
 
 const Navbar = () => {
-  const loggedIn = false;
-
   return (
-    <div className='flex justify-around items-center'>
+    <div className='flex md:flex-row flex-col justify-around items-center'>
       <div className='h-[7vh] mx-10'>
         <h1 className='custom-logo text-black text-6xl'>hackit</h1>
       </div>
@@ -19,7 +18,7 @@ const Navbar = () => {
             <li className='mx-4 uppercase'>
               <Link to='/posts'>Posts</Link>
             </li>
-            {loggedIn ? (
+            {Auth.loggedIn ? (
               <li className='mx-4 uppercase' /* onClick={handleLogout} */>
                 <Link to='/'>Logout</Link>
               </li>
