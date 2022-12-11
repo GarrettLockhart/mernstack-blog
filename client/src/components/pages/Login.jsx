@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import auth from '../../utils/auth';
+import { FaChevronRight } from 'react-icons/fa';
 
 const Login = () => {
   const [formState, setFormState] = useState({ email: '', password: '' });
@@ -35,9 +36,9 @@ const Login = () => {
 
   return (
     // component provided from https://tailwindcomponents.com/component/simple-login-2
-    <div className='flex justify-center h-[80vh] w-screen items-center'>
+    <div className='flex flex-col justify-center h-[80vh] w-screen items-center'>
       <form
-        className='w-full md:w-1/2 flex flex-col items-center '
+        className='w-full md:w-1/2 flex flex-col items-center transition-all ease-in-out duration-200'
         onSubmit={handleFormSubmit}
       >
         <h1 className='text-center text-2xl font-bold text-gray-600 mb-6'>
@@ -49,8 +50,9 @@ const Login = () => {
             name='email'
             id='email'
             className='w-full py-4 px-4 bg-slate-200 placeholder:font-semibold rounded hover:ring-1 outline-blue-500'
-            placeholder='Email'
+            placeholder='Demo: testuser@test.com'
             onChange={handleChange}
+            required
           />
         </div>
         <div className='w-3/4 mb-6'>
@@ -59,10 +61,15 @@ const Login = () => {
             name='password'
             id='password'
             className='w-full py-4 px-4 bg-slate-200 placeholder:font-semibold rounded hover:ring-1 outline-blue-500 '
-            placeholder='Password'
+            placeholder='Demo: "password"'
             onChange={handleChange}
+            required
           />
         </div>
+        <div
+          className='flex justify-center items-center text-red-500'
+          id='warning'
+        ></div>
         <div className='w-3/4 mt-4'>
           <button
             type='submit'
@@ -74,10 +81,10 @@ const Login = () => {
           <p className='flex justify-center items-center mt-4'>
             Don't have an account?{' '}
             <a
-              className='text-accent-300 transition-all ease-in-out duration-200 hover:text-accent-200'
+              className='flex flex-row justify-center items-center text-accent-300 transition-all ease-in-out duration-200 hover:text-accent-200 ml-2'
               href='/signup'
             >
-              Sign up
+              Sign up <FaChevronRight className='ml-1' />
             </a>
           </p>
         </div>

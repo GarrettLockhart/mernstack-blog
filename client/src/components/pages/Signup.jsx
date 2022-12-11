@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import auth from '../../utils/auth';
+import { FaChevronRight } from 'react-icons/fa';
 
 const Signup = () => {
   const [formState, setFormState] = useState({
@@ -24,22 +25,6 @@ const Signup = () => {
         auth.login(response.data);
       })
       .catch((err) => console.log(err));
-    // axios
-    //   .post('/login/new', {
-    //     email: formState.email,
-    //     password: formState.password
-    //   })
-    //   .then((response) => {
-    //     console.log(response);
-    //     auth.login(response.data);
-    //   })
-    //   .catch((err) => {
-    //     setTimeout(() => {
-    //       document.querySelector('#warning').textContent = '';
-    //     }, 3500);
-    //     document.querySelector('#warning').textContent =
-    //       'Incorrect email or password';
-    //   });
   };
 
   const handleChange = (e) => {
@@ -68,6 +53,7 @@ const Signup = () => {
             className='w-full py-4 px-4 bg-slate-200 placeholder:font-semibold rounded hover:ring-1 outline-blue-500'
             placeholder='First Name'
             onChange={handleChange}
+            required
           />
         </div>
         <div className='w-3/4 mb-6'>
@@ -78,6 +64,7 @@ const Signup = () => {
             className='w-full py-4 px-4 bg-slate-200 placeholder:font-semibold rounded hover:ring-1 outline-blue-500'
             placeholder='Last Name'
             onChange={handleChange}
+            required
           />
         </div>
         <div className='w-3/4 mb-6'>
@@ -88,6 +75,7 @@ const Signup = () => {
             className='w-full py-4 px-4 bg-slate-200 placeholder:font-semibold rounded hover:ring-1 outline-blue-500'
             placeholder='Email'
             onChange={handleChange}
+            required
           />
         </div>
         <div className='w-3/4 mb-6'>
@@ -98,6 +86,7 @@ const Signup = () => {
             className='w-full py-4 px-4 bg-slate-200 placeholder:font-semibold rounded hover:ring-1 outline-blue-500 '
             placeholder='Password'
             onChange={handleChange}
+            required
           />
         </div>
         <div className='w-3/4 mt-4'>
@@ -108,6 +97,15 @@ const Signup = () => {
             {' '}
             SIGN UP
           </button>
+          <p className='flex justify-center items-center mt-4'>
+            Already have an account?{' '}
+            <a
+              className='flex flex-row justify-center items-center text-accent-300 transition-all ease-in-out duration-200 hover:text-accent-200 ml-2'
+              href='/login'
+            >
+              Log in <FaChevronRight className='ml-1' />
+            </a>
+          </p>
         </div>
       </form>
     </div>
