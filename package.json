@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "start": "node server/server.js",
-    "server": "cd server && npm run watch",
     "dev": "concurrently \"cd server && npm run develop\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
     "seed": "cd server && npm run seed",
