@@ -1,12 +1,12 @@
 const jwt = require('jsonwebtoken');
-const dotenv = require('dotenv');
-dotenv.config();
+// const dotenv = require('dotenv');
+// dotenv.config();
 
-const expiration = '2h';
+const secret = 'mysecret';
 
 module.exports = {
   generateAccessToken(email) {
-    return jwt.sign(email, process.env.TOKEN_SECRET, { expiresIn: expiration });
+    return jwt.sign({ email }, secret, { expiresIn: '10h' });
   },
   authenticateToken(req, res, next) {
     const authHeader = req.headers['authorization'];

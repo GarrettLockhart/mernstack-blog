@@ -1,12 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import Auth from '../../utils/auth';
 
 const Navbar = () => {
-  // const handleLogout = () => {
-  //   Auth.logout();
-  // };
-
   const loggedIn = false;
 
   return (

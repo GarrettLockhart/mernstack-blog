@@ -1,5 +1,5 @@
 const { User } = require('../models');
-const { signToken, authMiddleware } = require('../utils/auth');
+const { generateAccessToken } = require('../utils/auth');
 
 module.exports = {
   async getUsers(req, res) {
@@ -19,5 +19,15 @@ module.exports = {
   },
   async createUser({ body }, res) {},
 
-  async loginUser(req, res) {}
+  async loginUser(req, res) {
+    const { email, password } = req.body;
+
+    const user = await User.findOne({ email: email });
+
+    if (!user) {
+      res.status(404).json({ message: 'No user found' });
+    }
+    const token = generateAccessToken(user);
+    return { token, user };
+  }
 };

@@ -3,20 +3,19 @@ import React, { useState } from 'react';
 const Login = () => {
   const [formState, setFormState] = useState({ email: '', password: '' });
 
-  const handleFormSubmit = async () => {
-    try {
-      const res = await fetch('/api/user/login', {
-        method: 'POST',
-        headers: { 'Content-type': 'application/json' },
-        body: { email: formState.email, password: formState.password }
-      });
-      console.log(res);
-      const token = await res.json();
-      console.log(token);
-      document.cookie = `token=${token}`;
-    } catch (err) {
-      console.log(err);
-    }
+  const handleFormSubmit = () => {
+    const payload = {
+      email: formState.email,
+      password: formState.password
+    };
+
+    fetch('/api/user/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: { payload }
+    });
   };
 
   const handleChange = (e) => {
