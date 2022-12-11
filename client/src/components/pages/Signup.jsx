@@ -24,7 +24,13 @@ const Signup = () => {
         console.log(response);
         auth.login(response.data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setTimeout(() => {
+          document.querySelector('#warning').textContent = '';
+        });
+        document.querySelector('#warning').textContent =
+          'Email already registered with us';
+      });
   };
 
   const handleChange = (e) => {
@@ -89,6 +95,10 @@ const Signup = () => {
             required
           />
         </div>
+        <div
+          className='flex justify-center items-center text-red-500'
+          id='warning'
+        ></div>
         <div className='w-3/4 mt-4'>
           <button
             type='submit'
