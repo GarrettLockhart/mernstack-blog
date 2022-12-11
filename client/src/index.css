@@ -24,3 +24,31 @@ img {
 .custom-logo {
   font-family: 'Nerko One', Arial, Helvetica, sans-serif;
 }
+
+@media screen and (max-width: 768px) {
+  .show-hamburger {
+    display: block;
+  }
+
+  .hide-nav {
+    display: none;
+  }
+
+  .show-nav {
+    background-color: black;
+    width: 100%;
+    color: white;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 7vh;
+  }
+  .show-login {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    top: 14vh;
+  }
+}

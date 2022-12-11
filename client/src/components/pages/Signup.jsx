@@ -45,7 +45,7 @@ const Signup = () => {
     // component provided from https://tailwindcomponents.com/component/simple-login-2
     <div className='flex justify-center h-[80vh] w-screen items-center'>
       <form
-        className='w-full md:w-1/2 flex flex-col items-center '
+        className='w-full lg:w-1/2 md:w-3/4 flex flex-col items-center transition-all ease-in-out duration-200'
         onSubmit={handleFormSubmit}
       >
         <h1 className='text-center text-2xl font-bold text-gray-600 mb-6'>
@@ -107,7 +107,7 @@ const Signup = () => {
             {' '}
             SIGN UP
           </button>
-          <p className='flex justify-center items-center mt-4'>
+          <p className='flex flex-col justify-center items-center mt-4'>
             Already have an account?{' '}
             <a
               className='flex flex-row justify-center items-center text-accent-300 transition-all ease-in-out duration-200 hover:text-accent-200 ml-2'
