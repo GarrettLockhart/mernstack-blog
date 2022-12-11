@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import auth from '../../utils/auth';
 import { FaChevronRight } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Signup = () => {
   const [formState, setFormState] = useState({
@@ -109,12 +110,12 @@ const Signup = () => {
           </button>
           <p className='flex flex-col justify-center items-center mt-4'>
             Already have an account?{' '}
-            <a
+            <Link
               className='flex flex-row justify-center items-center text-accent-300 transition-all ease-in-out duration-200 hover:text-accent-200 ml-2'
-              href='/login'
+              to='/login'
             >
               Log in <FaChevronRight className='ml-1' />
-            </a>
+            </Link>
           </p>
         </div>
       </form>
