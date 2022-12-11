@@ -1,21 +1,25 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import auth from '../../utils/auth';
 
 const Login = () => {
   const [formState, setFormState] = useState({ email: '', password: '' });
 
-  const handleFormSubmit = () => {
-    const payload = {
-      email: formState.email,
-      password: formState.password
-    };
-
-    fetch('/api/user/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: { payload }
-    });
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post('/login/new', {
+        email: formState.email,
+        password: formState.password
+      })
+      .then((response) => {
+        console.log(response);
+        auth.login(response.data);
+      })
+      .catch((err) => {
+        console.log('🚀 ~ file: Login.jsx:17 ~ handleFormSubmit ~ err', err);
+        return console.log();
+      });
   };
 
   const handleChange = (e) => {

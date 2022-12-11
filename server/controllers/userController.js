@@ -20,14 +20,18 @@ module.exports = {
   async createUser({ body }, res) {},
 
   async loginUser(req, res) {
-    const { email, password } = req.body;
+    try {
+      const { email } = req.body;
 
-    const user = await User.findOne({ email: email });
+      const user = await User.findOne({ email: email });
 
-    if (!user) {
-      res.status(404).json({ message: 'No user found' });
+      if (!user) {
+        res.status(404).json({ message: 'No user found' });
+      }
+      const token = generateAccessToken(user);
+      res.json(token);
+    } catch (err) {
+      console.log(err);
     }
-    const token = generateAccessToken(user);
-    return { token, user };
   }
 };
