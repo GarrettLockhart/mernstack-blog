@@ -3,6 +3,22 @@ import { Link } from 'react-router-dom';
 import Auth from '../../utils/auth';
 
 const Navbar = () => {
+  const ShowNav = () => {
+    if (Auth.loggedIn) {
+      return (
+        <li className='mx-4 uppercase' onClick={Auth.logout}>
+          <Link to='/'>Logout</Link>
+        </li>
+      );
+    } else {
+      return (
+        <li className='mx-4 uppercase'>
+          <Link to='/login'>Login</Link>
+        </li>
+      );
+    }
+  };
+
   return (
     <div className='flex md:flex-row flex-col justify-around items-center'>
       <div className='h-[7vh] mx-10'>
@@ -18,15 +34,7 @@ const Navbar = () => {
             <li className='mx-4 uppercase'>
               <Link to='/posts'>Posts</Link>
             </li>
-            {Auth.loggedIn ? (
-              <li className='mx-4 uppercase' /* onClick={handleLogout} */>
-                <Link to='/'>Logout</Link>
-              </li>
-            ) : (
-              <li className='mx-4 uppercase'>
-                <Link to='/login'>Login</Link>
-              </li>
-            )}
+            {ShowNav()}
           </ul>
         </nav>
       </div>
