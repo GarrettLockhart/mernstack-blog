@@ -17,8 +17,11 @@ const Login = () => {
         auth.login(response.data);
       })
       .catch((err) => {
-        console.log('🚀 ~ file: Login.jsx:17 ~ handleFormSubmit ~ err', err);
-        return console.log();
+        setTimeout(() => {
+          document.querySelector('#warning').textContent = '';
+        }, 3500);
+        document.querySelector('#warning').textContent =
+          'Incorrect email or password';
       });
   };
 
@@ -31,7 +34,7 @@ const Login = () => {
   };
 
   return (
-    <div className='h-[80vh] flex justify-center items-center'>
+    <div className='h-[80vh] flex flex-col justify-center items-center'>
       <form
         className='flex flex-col mx-auto lg:w-1/2 w-[90vw]'
         onSubmit={handleFormSubmit}
@@ -66,6 +69,7 @@ const Login = () => {
           </button>
         </div>
       </form>
+      <div className='mt-10' id='warning'></div>
     </div>
   );
 };
