@@ -18,7 +18,27 @@ module.exports = {
         .json({ message: 'Something went wrong with getting all users' });
     }
   },
-  async createUser({ body }, res) {},
+  async createUser(req, res) {
+    const { firstName, lastName, email, password } = req.body;
+
+    try {
+      const newUser = await User.create({
+        firstName,
+        lastName,
+        email,
+        password
+      });
+
+      if (!firstName || !lastName || !email || !password) {
+        return res.status(400).json({ message: 'Missing information' });
+      }
+
+      const token = generateAccessToken(newUser);
+      res.json(token);
+    } catch (err) {
+      console.log(err);
+    }
+  },
 
   async loginUser(req, res) {
     try {

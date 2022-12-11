@@ -71,6 +71,15 @@ const Login = () => {
             {' '}
             LOGIN
           </button>
+          <p className='flex justify-center items-center mt-4'>
+            Don't have an account?{' '}
+            <a
+              className='text-accent-300 transition-all ease-in-out duration-200 hover:text-accent-200'
+              href='/signup'
+            >
+              Sign up
+            </a>
+          </p>
         </div>
       </form>
     </div>

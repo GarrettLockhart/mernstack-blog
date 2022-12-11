@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import Auth from '../../utils/auth';
 
 const Navbar = () => {
-  const ShowNav = () => {
-    if (Auth.loggedIn) {
+  function ShowNav() {
+    if (Auth.loggedIn()) {
       return (
         <li className='mx-4 uppercase' onClick={Auth.logout}>
           <Link to='/'>Logout</Link>
@@ -17,7 +17,7 @@ const Navbar = () => {
         </li>
       );
     }
-  };
+  }
 
   return (
     <div className='flex md:flex-row flex-col justify-around items-center'>
