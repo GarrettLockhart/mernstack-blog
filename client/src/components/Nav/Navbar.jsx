@@ -4,35 +4,51 @@ import Auth from '../../utils/auth';
 import { HiOutlineMenu } from 'react-icons/hi';
 
 const Navbar = () => {
-  const [isActive, setActive] = useState(true);
+  const [isActive, setActive] = useState(false);
 
   const handleMenuChange = () => {
     setActive(!isActive);
-  };
-
-  const displayMenu = () => {
-    if (isActive) {
-      return <div>Hello</div>;
-    } else {
-      return <div>Goodbye</div>;
-    }
   };
 
   function ShowNav() {
     if (Auth.loggedIn()) {
       return (
         <Link
-          className='mr-4 font-bold text-lg'
+          className='mr-4 font-bold text-lg hide-nav'
           to='/'
-          onClick={Auth.logout()}
+          onClick={() => Auth.logout()}
         >
           Log Out
         </Link>
       );
     } else {
       return (
-        <Link className='mr-4 font-bold text-lg' to='/login'>
+        <Link className='mr-4 font-bold text-lg hide-nav' to='/login'>
           Log in
+        </Link>
+      );
+    }
+  }
+
+  function ShowMenuNav() {
+    if (Auth.loggedIn()) {
+      return (
+        <Link
+          className='mx-2 hide-buttons show-buttons custom-menu-link'
+          to='/'
+          onClick={() => Auth.logout()}
+        >
+          LOG OUT
+        </Link>
+      );
+    } else {
+      return (
+        <Link
+          className='mx-2 hide-buttons show-buttons custom-menu-link'
+          to='/login'
+          onClick={handleMenuChange}
+        >
+          LOG IN
         </Link>
       );
     }
@@ -44,30 +60,64 @@ const Navbar = () => {
         <Link to='/'>
           <h1 className='custom-logo text-6xl ml-8'>hackit</h1>
         </Link>
-        <div className='flex flex-row ml-8 mt-4'>
-          <Link to='/' className='mx-2'>
+        <div
+          className={
+            isActive ? 'flex flex-row ml-8 mt-4 custom-dropdown' : 'hidden'
+          }
+        >
+          <Link
+            to='/'
+            className='mx-2 custom-menu-link'
+            onClick={handleMenuChange}
+          >
             HOME
           </Link>
 
-          <Link to={Auth.loggedIn ? '/posts' : '/login'} className='mx-2'>
+          <Link
+            to={Auth.loggedIn ? '/posts' : '/login'}
+            className='mx-2 custom-menu-link'
+            onClick={handleMenuChange}
+          >
             POSTS
           </Link>
-          <Link to='/about' className='mx-2'>
+          <Link
+            to='/about'
+            className='mx-2 custom-menu-link'
+            onClick={handleMenuChange}
+          >
             ABOUT
           </Link>
-          <Link to='/contact' className='mx-2'>
+          <Link
+            to='/contact'
+            className='mx-2 custom-menu-link'
+            onClick={handleMenuChange}
+          >
             CONTACT US
           </Link>
+          <Link
+            className='mx-2 hide-buttons show-buttons custom-menu-link'
+            to='/signup'
+            onClick={handleMenuChange}
+          >
+            SIGN UP
+          </Link>
+          {ShowMenuNav()}
         </div>
       </div>
       <div className='flex justify-center items-center'>
         {ShowNav()}
         <Link
-          className='bg-black text-white px-4 py-2 rounded-full'
+          className='bg-black text-white px-4 py-2 rounded-full hide-nav'
           to='/signup'
         >
           Sign up
         </Link>
+      </div>
+      <div
+        className='flex justify-center items-center'
+        onClick={handleMenuChange}
+      >
+        <HiOutlineMenu className='hidden show-hamburger text-3xl' />
       </div>
     </div>
   );

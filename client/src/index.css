@@ -34,21 +34,31 @@ img {
     display: none;
   }
 
-  .show-nav {
-    background-color: black;
-    width: 100%;
-    color: white;
+  .show-buttons {
+    display: block;
+  }
+
+  .custom-dropdown {
     position: absolute;
     display: flex;
     flex-direction: column;
     top: 7vh;
+    left: 0px;
+    background-color: black;
+    color: white;
+    margin: 0;
+    width: 100vw;
+    padding: 10px;
   }
-  .show-login {
-    position: absolute;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    top: 14vh;
+
+  .custom-menu-link {
+    margin-bottom: 10px;
+    font-size: 1.125rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .hide-buttons {
+    display: none;
   }
 }
