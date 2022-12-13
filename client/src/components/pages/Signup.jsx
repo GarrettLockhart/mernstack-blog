@@ -5,6 +5,7 @@ import { FaChevronRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const Signup = () => {
+  // structure for input values in state
   const [formState, setFormState] = useState({
     firstName: '',
     lastName: '',
@@ -12,6 +13,7 @@ const Signup = () => {
     password: ''
   });
 
+  // post to server to create a user and retrieve a jwt token
   const handleFormSubmit = (e) => {
     e.preventDefault();
     axios
@@ -34,6 +36,7 @@ const Signup = () => {
       });
   };
 
+  // get inputs values and set state
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormState({

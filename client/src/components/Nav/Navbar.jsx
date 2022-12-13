@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function NavBar() {
+  // used for opening and closing the hamburger menu
   const [navbar, setNavbar] = useState(false);
 
   return (

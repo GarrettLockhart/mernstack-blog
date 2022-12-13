@@ -5,8 +5,10 @@ import { FaChevronRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
+  // get inputs for post request
   const [formState, setFormState] = useState({ email: '', password: '' });
 
+  // post to server and retrieve jwt token
   const handleFormSubmit = (e) => {
     e.preventDefault();
     axios
@@ -27,6 +29,7 @@ const Login = () => {
       });
   };
 
+  // get inputs and set state
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormState({

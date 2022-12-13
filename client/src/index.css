@@ -15,12 +15,19 @@ body {
   box-sizing: border-box;
 }
 
+/* Hide scroll bar but still allow scroll */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Make images easier to work with */
 img {
   display: block;
   object-fit: cover;
   width: 100%;
 }
 
+/* Custom font for main logo */
 .custom-logo {
   font-family: 'Nerko One', Arial, Helvetica, sans-serif;
 }
