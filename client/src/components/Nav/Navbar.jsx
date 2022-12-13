@@ -57,22 +57,22 @@ export default function NavBar() {
             }`}
           >
             <ul className='items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0'>
-              <li className='text-black ease-in-out duration-200 hover:text-accent-200'>
+              <li className='text-black ease-in-out duration-200 hover:text-main-200'>
                 <Link to='/' onClick={() => setNavbar(!navbar)}>
                   HOME
                 </Link>
               </li>
-              <li className='text-black ease-in-out duration-200  hover:text-accent-200'>
+              <li className='text-black ease-in-out duration-200  hover:text-main-200'>
                 <Link to='/blog' onClick={() => setNavbar(!navbar)}>
                   BLOG
                 </Link>
               </li>
-              <li className='text-black ease-in-out duration-200  hover:text-accent-200'>
+              <li className='text-black ease-in-out duration-200  hover:text-main-200'>
                 <Link to='/about' onClick={() => setNavbar(!navbar)}>
                   ABOUT
                 </Link>
               </li>
-              <li className='text-black ease-in-out duration-200  hover:text-accent-200'>
+              <li className='text-black ease-in-out duration-200  hover:text-main-200'>
                 <Link to='/contact' onClick={() => setNavbar(!navbar)}>
                   CONTACT US
                 </Link>
@@ -82,7 +82,7 @@ export default function NavBar() {
             <div className='mt-3 space-y-2 md:hidden'>
               <Link
                 to='/login'
-                className='inline-block w-full px-4 py-2 text-center text-white bg-accent-300 rounded-md shadow ease-in-out duration-200 hover:bg-accent-200'
+                className='inline-block w-full px-4 py-2 text-center text-white bg-main-200 rounded-md shadow ease-in-out duration-200 hover:bg-main-300'
                 onClick={() => setNavbar(!navbar)}
               >
                 LOGIN
@@ -100,7 +100,7 @@ export default function NavBar() {
         <div className='hidden space-x-2 md:inline-block'>
           <Link
             to='/login'
-            className='px-4 py-2 text-white bg-accent-300 rounded-md shadow ease-in-out duration-200 hover:bg-accent-200'
+            className='px-4 py-2 text-white bg-main-200 rounded-md shadow ease-in-out duration-200 hover:bg-main-300'
             onClick={() => setNavbar(!navbar)}
           >
             LOGIN
