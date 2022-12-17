@@ -6,12 +6,12 @@ export default function NavBar() {
   const [navbar, setNavbar] = useState(false);
 
   return (
-    <nav className='w-full'>
+    <nav className='w-full bg-main-50'>
       <div className='justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8 lg:h-[7vh]'>
         <div>
           <div className='flex items-center justify-between custom-logo md:block'>
             <a href='/'>
-              <h2 className='text-5xl font-bold text-black'>hackit</h2>
+              <h2 className='text-5xl font-bold text-black'>Hackit</h2>
             </a>
             <div className='md:hidden'>
               <button
@@ -58,22 +58,22 @@ export default function NavBar() {
             }`}
           >
             <ul className='items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0'>
-              <li className='text-black ease-in-out duration-200 hover:text-main-200'>
+              <li className='text-black ease-in-out duration-200 hover:text-main-300'>
                 <Link to='/' onClick={() => setNavbar(!navbar)}>
                   HOME
                 </Link>
               </li>
-              <li className='text-black ease-in-out duration-200  hover:text-main-200'>
+              <li className='text-black ease-in-out duration-200  hover:text-main-300'>
                 <Link to='/blog' onClick={() => setNavbar(!navbar)}>
                   BLOG
                 </Link>
               </li>
-              <li className='text-black ease-in-out duration-200  hover:text-main-200'>
+              <li className='text-black ease-in-out duration-200  hover:text-main-300'>
                 <Link to='/about' onClick={() => setNavbar(!navbar)}>
                   ABOUT
                 </Link>
               </li>
-              <li className='text-black ease-in-out duration-200  hover:text-main-200'>
+              <li className='text-black ease-in-out duration-200  hover:text-main-300'>
                 <Link to='/contact' onClick={() => setNavbar(!navbar)}>
                   CONTACT US
                 </Link>

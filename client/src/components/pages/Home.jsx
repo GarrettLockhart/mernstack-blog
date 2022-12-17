@@ -1,30 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaChevronRight } from 'react-icons/fa';
-import axios from 'axios';
+import imgPlaceholder from '../../img/blog-post-placeholder.jpeg';
+// import axios from 'axios';
 
 const Home = () => {
-  const [imgURL, setImgURL] = useState('');
-  useEffect(() => {
-    axios
-      .get('https://picsum.photos/1000')
-      .then((response) => {
-        setImgURL(response.request.responseURL);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+  // const [imgURL, setImgURL] = useState('');
+  // useEffect(() => {
+  //   axios
+  //     .get('https://picsum.photos/1000')
+  //     .then((response) => {
+  //       setImgURL(response.request.responseURL);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, []);
 
   return (
     <div>
-      <div className='flex flex-col justify-start items-center h-[23vh]'>
+      <div className='flex flex-col justify-start items-center h-[23vh] bg-main-50'>
         <div>
-          <h2 className='text-6xl mt-24'>
-            Welcome to <span className='custom-logo text-7xl'>hackit</span>
+          <h2 className='text-center text-6xl mt-24'>
+            Welcome to <span className='custom-logo text-7xl'>Hackit</span>
           </h2>
-          <p>A blog yo</p>
+          <p className='w-3/4 text-center mx-auto'>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, ut?
+          </p>
         </div>
       </div>
-      <div className='flex justify-center items-end h-[23vh] mb-20'>
+      <div className='flex justify-center items-end h-[23vh] mb-20 bg-main-50'>
         <Link
           to='/signup'
           className='flex justify-center items-center mb-10 bg-main-200 hover:bg-main-300 text-white ease-in-out duration-200 px-5 py-3 rounded-full mx-2 shadow'
@@ -38,22 +41,16 @@ const Home = () => {
           Learn More <FaChevronRight className='ml-2' />
         </Link>
       </div>
-      <div className=''>
-        <section className='grid lg:grid-cols-3 md:grid-rows-2 grid-cols-1 p-10 w-4/5 mx-auto'>
+      <div>
+        <section className='grid lg:grid-cols-3 md:grid-rows-2 grid-cols-1 p-10 w-4/5 mx-auto h-auto'>
           <div
-            className='col-span-1 mb-4 w-full h-full'
+            className='col-span-1 lg:mb-0 mb-4 w-full lg:h-full h-60'
             style={{
-              backgroundImage: `url(${imgURL})`,
+              backgroundImage: `url(${imgPlaceholder})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center'
             }}
-          >
-            {/* <img
-              src={PostPlaceholder}
-              alt='Placeholder'
-              className='h-[100%] w-full rounded-xl'
-            /> */}
-          </div>
+          ></div>
           <div className='col-span-2 flex flex-col px-10 h-full'>
             <section className='flex h-10 justify-start'>
               <p className='flex justify-center items-center px-3 text-[13px] bg-black text-white rounded-full mr-2'>
@@ -77,7 +74,7 @@ const Home = () => {
             <section className='mb-10'>
               <img src='' alt='' />
               <p>
-                Author: <Link to='/'>Garrett Lockhart</Link>{' '}
+                By: <Link to='/'>Garrett Lockhart</Link>{' '}
               </p>
             </section>
             <button className='lg:w-[50%] px-5 py-2 rounded-full bg-black text-white'>
