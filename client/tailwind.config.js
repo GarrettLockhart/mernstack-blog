@@ -4,14 +4,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        main: {
-          50: '#48cae4',
-          100: '#00a6fb',
-          200: '#0582ca',
-          300: '#006494',
-          400: '#003554',
-          500: '#051923'
-        }
+        'c-blue': '#264653',
+        'c-teal': '#2a9d8f',
+        'c-yellow': '#e9c46a',
+        'c-orange': '#f4a261',
+        'c-red': '#e76f51'
       }
     },
     screens: {

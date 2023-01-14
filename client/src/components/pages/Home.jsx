@@ -1,36 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaChevronRight } from 'react-icons/fa';
 import imgPlaceholder from '../../img/blog-post-placeholder.jpeg';
-// import axios from 'axios';
 
 const Home = () => {
-  // const [imgURL, setImgURL] = useState('');
-  // useEffect(() => {
-  //   axios
-  //     .get('https://picsum.photos/1000')
-  //     .then((response) => {
-  //       setImgURL(response.request.responseURL);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, []);
-
   return (
     <div>
-      <div className='flex flex-col justify-start items-center h-[23vh] bg-main-50'>
+      <div className='flex flex-col justify-start items-center h-[23vh] bg-c-blue'>
         <div>
-          <h2 className='text-center text-6xl mt-24'>
-            Welcome to <span className='custom-logo text-7xl'>Hackit</span>
+          <h2 className='text-center text-white text-6xl mt-24'>
+            Welcome to{' '}
+            <span className='custom-logo text-7xl text-white'>Hackit</span>
           </h2>
-          <p className='w-3/4 text-center mx-auto'>
+          <p className='w-3/4 text-center text-white mx-auto'>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, ut?
           </p>
         </div>
       </div>
-      <div className='flex justify-center items-end h-[23vh] mb-20 bg-main-50'>
+      <div className='flex justify-center items-end h-[23vh] mb-20 bg-c-blue'>
         <Link
           to='/signup'
-          className='flex justify-center items-center mb-10 bg-main-200 hover:bg-main-300 text-white ease-in-out duration-200 px-5 py-3 rounded-full mx-2 shadow'
+          className='flex justify-center items-center mb-10 bg-c-red hover:bg-c-orange ease-in-out duration-200 px-5 py-3 rounded-full mx-2 shadow'
         >
           Get Started <FaChevronRight className='ml-2' />
         </Link>
@@ -77,7 +67,7 @@ const Home = () => {
                 By: <Link to='/'>Garrett Lockhart</Link>{' '}
               </p>
             </section>
-            <button className='lg:w-[50%] px-5 py-2 rounded-full bg-black text-white'>
+            <button className='lg:w-[50%] px-5 py-2 rounded-full bg-black ease-in-out duration-200 hover:bg-c-blue text-white'>
               Full Post
             </button>
           </div>

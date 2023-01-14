@@ -106,7 +106,7 @@ const Signup = () => {
         <div className='w-3/4 mt-4'>
           <button
             type='submit'
-            className='py-4 bg-main-200 transition-all ease-in-out duration-200 w-full rounded text-blue-50 font-bold hover:bg-main-300'
+            className='py-4 bg-c-teal transition-all ease-in-out duration-200 w-full rounded text-blue-50 font-bold hover:bg-c-blue'
           >
             {' '}
             SIGN UP
@@ -114,7 +114,7 @@ const Signup = () => {
           <p className='flex flex-col justify-center items-center mt-4'>
             Already have an account?{' '}
             <Link
-              className='flex flex-row justify-center items-center text-main-300 transition-all ease-in-out duration-200 hover:text-main-200 ml-2'
+              className='flex flex-row justify-center items-center text-main-300 transition-all ease-in-out duration-200 hover:text-c-teal ml-2'
               to='/login'
             >
               Log in <FaChevronRight className='ml-1' />

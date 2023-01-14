@@ -6,7 +6,7 @@ export default function NavBar() {
   const [navbar, setNavbar] = useState(false);
 
   return (
-    <nav className='w-full bg-main-50'>
+    <nav className='w-full'>
       <div className='justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8 lg:h-[7vh]'>
         <div>
           <div className='flex items-center justify-between custom-logo md:block'>
@@ -58,22 +58,22 @@ export default function NavBar() {
             }`}
           >
             <ul className='items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0'>
-              <li className='text-black ease-in-out duration-200 hover:text-main-300'>
+              <li className='text-black ease-in-out duration-200 hover:text-c-teal'>
                 <Link to='/' onClick={() => setNavbar(!navbar)}>
                   HOME
                 </Link>
               </li>
-              <li className='text-black ease-in-out duration-200  hover:text-main-300'>
+              <li className='text-black ease-in-out duration-200  hover:text-c-teal'>
                 <Link to='/blog' onClick={() => setNavbar(!navbar)}>
                   BLOG
                 </Link>
               </li>
-              <li className='text-black ease-in-out duration-200  hover:text-main-300'>
+              <li className='text-black ease-in-out duration-200  hover:text-c-teal'>
                 <Link to='/about' onClick={() => setNavbar(!navbar)}>
                   ABOUT
                 </Link>
               </li>
-              <li className='text-black ease-in-out duration-200  hover:text-main-300'>
+              <li className='text-black ease-in-out duration-200  hover:text-c-teal'>
                 <Link to='/contact' onClick={() => setNavbar(!navbar)}>
                   CONTACT US
                 </Link>
@@ -83,7 +83,7 @@ export default function NavBar() {
             <div className='mt-3 space-y-2 md:hidden'>
               <Link
                 to='/login'
-                className='inline-block w-full px-4 py-2 text-center text-white bg-main-200 rounded-md shadow ease-in-out duration-200 hover:bg-main-300'
+                className='inline-block w-full px-4 py-2 text-center text-white bg-c-teal rounded-md shadow ease-in-out duration-200 hover:bg-c-blue'
                 onClick={() => setNavbar(!navbar)}
               >
                 LOGIN
@@ -101,7 +101,7 @@ export default function NavBar() {
         <div className='hidden space-x-2 md:inline-block'>
           <Link
             to='/login'
-            className='px-4 py-2 text-white bg-main-200 rounded-md shadow ease-in-out duration-200 hover:bg-main-300'
+            className='px-4 py-2 text-white bg-c-teal rounded-md shadow ease-in-out duration-200 hover:bg-c-blue'
             onClick={() => setNavbar(!navbar)}
           >
             LOGIN
