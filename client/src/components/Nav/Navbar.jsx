@@ -1,9 +1,43 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Auth from '../../utils/auth';
 
 export default function NavBar() {
   // used for opening and closing the hamburger menu
   const [navbar, setNavbar] = useState(false);
+
+  const [auth, setAuth] = useState(false);
+
+  const ShowNav = () => {
+    if (auth) {
+      return (
+        <button
+          className='px-4 py-2 text-gray-800 bg-white rounded-md shadow hover:bg-gray-100 ease-in-out duration-200'
+          onClick={() => Auth.logout()}
+        >
+          SIGN OUT
+        </button>
+      );
+    } else {
+      return (
+        <Link
+          to='/signup'
+          className='px-4 py-2 text-gray-800 bg-white rounded-md shadow hover:bg-gray-100 ease-in-out duration-200'
+          onClick={() => setNavbar(!navbar)}
+        >
+          SIGN UP
+        </Link>
+      );
+    }
+  };
+
+  useEffect(() => {
+    if (Auth.loggedIn()) {
+      setAuth(true);
+    } else {
+      setAuth(false);
+    }
+  }, []);
 
   return (
     <nav className='w-full'>
@@ -88,13 +122,7 @@ export default function NavBar() {
               >
                 LOGIN
               </Link>
-              <Link
-                to='/signup'
-                className='inline-block w-full px-4 py-2 text-center text-gray-800 bg-white rounded-md shadow hover:bg-gray-100 ease-in-out duration-200'
-                onClick={() => setNavbar(!navbar)}
-              >
-                SIGN UP
-              </Link>
+              {ShowNav()}
             </div>
           </div>
         </div>
@@ -106,13 +134,7 @@ export default function NavBar() {
           >
             LOGIN
           </Link>
-          <Link
-            to='/signup'
-            className='px-4 py-2 text-gray-800 bg-white rounded-md shadow hover:bg-gray-100 ease-in-out duration-200'
-            onClick={() => setNavbar(!navbar)}
-          >
-            SIGN UP
-          </Link>
+          {ShowNav()}
         </div>
       </div>
     </nav>
