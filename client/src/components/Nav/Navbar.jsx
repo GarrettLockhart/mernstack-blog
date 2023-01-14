@@ -8,7 +8,30 @@ export default function NavBar() {
 
   const [auth, setAuth] = useState(false);
 
-  const ShowNav = () => {
+  const ShowNavMobile = () => {
+    if (auth) {
+      return (
+        <button
+          className='px-4 py-2 w-full text-gray-800 bg-white rounded-md shadow hover:bg-gray-100 ease-in-out duration-200'
+          onClick={() => Auth.logout()}
+        >
+          SIGN OUT
+        </button>
+      );
+    } else {
+      return (
+        <Link
+          to='/signup'
+          className='px-4 py-2 inline-block w-full text-center text-gray-800 bg-white rounded-md shadow hover:bg-gray-100 ease-in-out duration-200'
+          onClick={() => setNavbar(!navbar)}
+        >
+          SIGN UP
+        </Link>
+      );
+    }
+  };
+
+  const ShowNavDesktop = () => {
     if (auth) {
       return (
         <button
@@ -122,7 +145,7 @@ export default function NavBar() {
               >
                 LOGIN
               </Link>
-              {ShowNav()}
+              {ShowNavMobile()}
             </div>
           </div>
         </div>
@@ -134,7 +157,7 @@ export default function NavBar() {
           >
             LOGIN
           </Link>
-          {ShowNav()}
+          {ShowNavDesktop()}
         </div>
       </div>
     </nav>
