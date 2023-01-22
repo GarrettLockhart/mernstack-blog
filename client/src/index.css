@@ -31,3 +31,20 @@ img {
 .custom-logo {
   font-family: 'Nerko One', Arial, Helvetica, sans-serif;
 }
+
+.custom-para {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.custom-card:hover {
+  cursor: pointer;
+  -webkit-filter: brightness(85%);
+  -webkit-transition: all 300ms ease;
+  -moz-transition: all 300ms ease;
+  -o-transition: all 300ms ease;
+  -ms-transition: all 300ms ease;
+  transition: all 300ms ease;
+}
