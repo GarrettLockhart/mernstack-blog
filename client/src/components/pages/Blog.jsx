@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import imgPlaceholder from '../../img/blog-post-placeholder.jpeg';
 
 const Blog = () => {
+  const [show, setShow] = useState(false);
+
+  const handleModal = (e) => {
+    const post = e.target;
+    console.log(post);
+  };
+
   return (
     <div>
       <div className='flex flex-col justify-center items-center my-16'>
@@ -16,6 +23,7 @@ const Blog = () => {
             backgroundSize: 'cover',
             backgroundPosition: 'center'
           }}
+          onClick={handleModal}
         >
           <div className='bg-gray-200 rounded-lg py-3 px-5'>
             <h2 className='text-black text-xl font-bold'>Post Title</h2>
