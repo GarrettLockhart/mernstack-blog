@@ -2,7 +2,7 @@
   "name": "mernstack-blog",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3001",
+  "proxy": "http://localhost:3001/",
   "dependencies": {
     "axios": "^1.2.1",
     "jwt-decode": "^2.2.0",

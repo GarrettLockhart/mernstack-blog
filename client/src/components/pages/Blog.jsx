@@ -6,7 +6,7 @@ const Blog = () => {
     <div>
       <div className='flex flex-col justify-center items-center my-16'>
         <h2 className='text-3xl font-bold m-2'>Welcome to the Matrix</h2>
-        <p className='m-2'>with love from the tech community</p>
+        <p className='m-2'>made with love from the tech community</p>
       </div>
       <div className='container mx-auto'>
         <section
