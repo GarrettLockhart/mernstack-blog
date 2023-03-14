@@ -54,6 +54,18 @@ export default function NavBar() {
     }
   };
 
+  const ShowCreate = () => {
+    if (auth) {
+      return (
+        <li className='text-black ease-in-out duration-200  hover:text-c-teal'>
+          <Link to='/create' onClick={() => setNavbar(!navbar)}>
+            CREATE
+          </Link>
+        </li>
+      );
+    }
+  };
+
   useEffect(() => {
     if (Auth.loggedIn()) {
       setAuth(true);
@@ -125,6 +137,7 @@ export default function NavBar() {
                   BLOG
                 </Link>
               </li>
+              {ShowCreate()}
               <li className='text-black ease-in-out duration-200  hover:text-c-teal'>
                 <Link to='/about' onClick={() => setNavbar(!navbar)}>
                   ABOUT
