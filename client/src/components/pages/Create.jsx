@@ -39,23 +39,29 @@ const Create = () => {
           className='flex flex-col w-[50%] mx-auto'
           onSubmit={handleFormSubmit}
         >
-          <label htmlFor='post-title'>Post Title:</label>
+          <label className='uppercase font-bold' htmlFor='post-title'>
+            Post Title:
+          </label>
           <input
-            className='my-2 py-2 px-2'
+            className='mt-1 mb-4 p-2 rounded hover:ring-1 outline-blue-500'
             type='text'
             id='post-title'
             onChange={handleChange}
           />
-          <label htmlFor='post-content'>Content:</label>
+          <label className='uppercase font-bold' htmlFor='post-content'>
+            Content:
+          </label>
           <textarea
-            className='my-2'
+            className='mt-1 mb-4 p-2 rounded hover:ring-1 outline-blue-500'
             name='post-content'
             id='post-content'
             cols='30'
             rows='10'
             onChange={handleChange}
           ></textarea>
-          <button className='uppercase'>Post</button>
+          <button className='uppercase text-white py-3 bg-c-teal hover:bg-c-blue ease-in-out duration-200'>
+            Post
+          </button>
         </form>
       </div>
     </div>
