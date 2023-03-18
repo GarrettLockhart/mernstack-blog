@@ -1,4 +1,4 @@
-const { Post, postSchema } = require('../models/Post');
+const Post = require('../models/Post');
 
 module.exports = {
   async createPost(req, res) {
@@ -6,8 +6,8 @@ module.exports = {
 
     try {
       const newPost = await Post.create({
-        title,
-        content
+        title: title,
+        content: content
       });
 
       if (!title || !content) {
