@@ -20,8 +20,8 @@ const Create = () => {
   };
 
   const handleChange = (e) => {
-    const title = document.getElementById('post-title').value;
-    const content = document.getElementById('post-content').value;
+    const title = document.getElementById('post-title').value.trim();
+    const content = document.getElementById('post-content').value.trim();
 
     setPost({
       title: title,
