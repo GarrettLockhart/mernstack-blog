@@ -1,6 +1,20 @@
 const Post = require('../models/Post');
 
 module.exports = {
+  async getPosts(req, res) {
+    try {
+      const allPosts = await Post.find().select('-__v')
+
+      if (!allPosts) {
+        res.status(404).json({message: 'No posts found.'})
+      }
+
+      res.json(allPosts)
+    } catch (err) {
+      console.log(err)
+    }
+  },
+
   async createPost(req, res) {
     const { title, content } = req.body;
 

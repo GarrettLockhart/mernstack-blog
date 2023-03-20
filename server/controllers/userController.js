@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 module.exports = {
   async getUsers(req, res) {
     try {
-      const allUser = await User.find();
+      const allUser = await User.find().select('-__v');
 
       if (!allUser) {
         res.status(404).json({ message: 'No users found' });
@@ -44,7 +44,7 @@ module.exports = {
     try {
       const { email, password } = req.body;
 
-      const user = await User.findOne({ email: email });
+      const user = await User.findOne({ email: email }).select('-__v');
 
       if (!user) {
         res.status(404).json({ message: 'No user found' });
