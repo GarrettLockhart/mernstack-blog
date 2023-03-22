@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import imgPlaceholder from '../../img/blog-post-placeholder.jpeg';
 import axios from 'axios';
+// import blogModal from '../modals/blogModal';
 
 const Blog = () => {
   const [post, setPost] = useState([]);
+
+  const [currentPost, setCurrentPost] = useState([]);
 
   const loadPosts = () => {
     axios
@@ -16,14 +19,26 @@ const Blog = () => {
       });
   };
 
+  const getPostData = (e) => {
+    const key = document.querySelector('.blog-modal').dataset;
+
+    axios
+      .get(`/api/post/all`, {
+        key: key
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    console.log(key);
+  };
+
   useEffect(() => {
     loadPosts();
   }, []);
-
-  const handleModal = (e) => {
-    const post = e.target;
-    console.log(post);
-  };
 
   return (
     <div>
@@ -33,7 +48,11 @@ const Blog = () => {
       </div>
       {post.map((posts) => {
         return (
-          <div className='container mx-auto' key={posts._id}>
+          <div
+            className='container mx-auto blog-modal'
+            key={posts._id}
+            data-id={posts._id}
+          >
             <section
               className='flex flex-col justify-end p-10 h-[600px] my-16 custom-card'
               style={{
@@ -41,7 +60,7 @@ const Blog = () => {
                 backgroundSize: 'cover',
                 backgroundPosition: 'center'
               }}
-              onClick={handleModal}
+              onClick={getPostData}
             >
               <div className='bg-gray-200 rounded-lg py-3 px-5'>
                 <h2 className='text-black text-xl font-bold'>{posts.title}</h2>

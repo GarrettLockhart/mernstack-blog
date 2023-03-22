@@ -3,15 +3,15 @@ const Post = require('../models/Post');
 module.exports = {
   async getPosts(req, res) {
     try {
-      const allPosts = await Post.find().select('-__v')
+      const allPosts = await Post.find().select('-__v');
 
       if (!allPosts) {
-        res.status(404).json({message: 'No posts found.'})
+        res.status(404).json({ message: 'No posts found.' });
       }
 
-      res.json(allPosts)
+      res.json(allPosts);
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
   },
 
@@ -25,12 +25,27 @@ module.exports = {
       });
 
       if (!title || !content) {
-        res.status(404).json({ message: 'Missing information' });
+        res.status(404).json({ message: 'Error creating post' });
       }
 
       res.json(newPost);
     } catch (err) {
       res.status(500).json({ message: 'Something went wrong' });
+    }
+  },
+
+  async singlePost(req, res) {
+    const { key } = req.body;
+
+    try {
+      const singlePost = await Post.findOne({ _id: key });
+
+      if (!key) {
+        res.status(404).json({ message: 'Error with single post' });
+      }
+      res.json(singlePost);
+    } catch (err) {
+      console.log(err);
     }
   }
 };
