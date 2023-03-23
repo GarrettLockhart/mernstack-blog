@@ -19,21 +19,28 @@ const Blog = () => {
       });
   };
 
-  const getPostData = (e) => {
-    const key = document.querySelector('.blog-modal').dataset;
+  const getPostData = () => {
+    let key = document.querySelector('.blog-modal').dataset;
 
+    console.log(key);
     axios
       .get(`/api/post/all`, {
         key: key
       })
       .then((res) => {
-        console.log(res);
+        const allPosts = res.data;
+
+        for (let i = 0; i < allPosts.length; i++) {
+          const postId = allPosts[i]._id;
+
+          if (postId == key) {
+            setCurrentPost(postId);
+          }
+        }
       })
       .catch((err) => {
         console.log(err);
       });
-
-    console.log(key);
   };
 
   useEffect(() => {
