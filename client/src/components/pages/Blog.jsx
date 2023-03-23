@@ -33,7 +33,7 @@ const Blog = () => {
         for (let i = 0; i < allPosts.length; i++) {
           const postId = allPosts[i]._id;
 
-          if (postId == key) {
+          if (postId === key) {
             setCurrentPost(postId);
           }
         }
