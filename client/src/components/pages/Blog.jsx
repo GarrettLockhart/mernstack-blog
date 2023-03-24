@@ -6,7 +6,7 @@ import axios from 'axios';
 const Blog = () => {
   const [post, setPost] = useState([]);
 
-  const [currentPost, setCurrentPost] = useState([]);
+  const [currentPost, setCurrentPost] = useState('');
 
   const loadPosts = () => {
     axios
@@ -19,28 +19,9 @@ const Blog = () => {
       });
   };
 
-  const getPostData = () => {
-    let key = document.querySelector('.blog-modal').dataset;
-
-    console.log(key);
-    axios
-      .get(`/api/post/all`, {
-        key: key
-      })
-      .then((res) => {
-        const allPosts = res.data;
-
-        for (let i = 0; i < allPosts.length; i++) {
-          const postId = allPosts[i]._id;
-
-          if (postId === key) {
-            setCurrentPost(postId);
-          }
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const getPostData = (e) => {
+    const dataElement = e.target.closest('[data-id]').dataset;
+    setCurrentPost(dataElement);
   };
 
   useEffect(() => {
@@ -59,6 +40,8 @@ const Blog = () => {
             className='container mx-auto blog-modal'
             key={posts._id}
             data-id={posts._id}
+            id={posts._id}
+            onClick={getPostData}
           >
             <section
               className='flex flex-col justify-end p-10 h-[600px] my-16 custom-card'
@@ -67,7 +50,6 @@ const Blog = () => {
                 backgroundSize: 'cover',
                 backgroundPosition: 'center'
               }}
-              onClick={getPostData}
             >
               <div className='bg-gray-200 rounded-lg py-3 px-5'>
                 <h2 className='text-black text-xl font-bold'>{posts.title}</h2>
