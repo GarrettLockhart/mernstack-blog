@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import imgPlaceholder from '../../img/blog-post-placeholder.jpeg';
 import axios from 'axios';
-// import blogModal from '../modals/blogModal';
+import BlogModal from '../modals/BlogModal';
 
 const Blog = () => {
   const [post, setPost] = useState([]);
