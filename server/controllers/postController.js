@@ -36,7 +36,6 @@ module.exports = {
 
   async singlePost(req, res) {
     const { key } = req.params;
-    console.log('🚀 ~ file: postController.js:39 ~ singlePost ~ key:', key);
 
     try {
       const singlePost = await Post.findById(key);
