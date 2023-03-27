@@ -35,10 +35,11 @@ module.exports = {
   },
 
   async singlePost(req, res) {
-    const { key } = req.body;
+    const { key } = req.params;
+    console.log('🚀 ~ file: postController.js:39 ~ singlePost ~ key:', key);
 
     try {
-      const singlePost = await Post.findOne({ _id: key });
+      const singlePost = await Post.findById(key);
 
       if (!key) {
         res.status(404).json({ message: 'Error with single post' });

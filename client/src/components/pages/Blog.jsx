@@ -6,7 +6,7 @@ import BlogModal from '../modals/BlogModal';
 const Blog = () => {
   const [post, setPost] = useState([]);
 
-  const [currentPost, setCurrentPost] = useState('');
+  const [currentPost, setCurrentPost] = useState({});
 
   const loadPosts = () => {
     axios
@@ -21,7 +21,15 @@ const Blog = () => {
 
   const getPostData = (e) => {
     const dataElement = e.target.closest('[data-id]').dataset;
-    setCurrentPost(dataElement);
+    const stringId = dataElement.id;
+
+    axios
+      .get(`/api/post/${stringId}`)
+      .then((res) => {
+        console.log(res.data);
+        setCurrentPost(res.data);
+      })
+      .catch((err) => console.log(err));
   };
 
   useEffect(() => {
@@ -29,7 +37,7 @@ const Blog = () => {
   }, []);
 
   return (
-    <div>
+    <>
       <div className='flex flex-col justify-center items-center my-16'>
         <h2 className='text-3xl font-bold m-2'>Welcome to the Matrix</h2>
         <p className='m-2'>made with love from the tech community</p>
@@ -61,7 +69,8 @@ const Blog = () => {
           </div>
         );
       })}
-    </div>
+      <BlogModal currentPost={currentPost} posts={post} />
+    </>
   );
 };
 
