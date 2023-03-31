@@ -8,7 +8,26 @@ const Blog = () => {
 
   const [currentPost, setCurrentPost] = useState({});
 
-  const loadPosts = () => {
+  const [showModal, setShowModal] = useState(false);
+
+  const handleModal = (e) => {
+    const element = e.target.closest('[data-id]');
+    const title = element.querySelector('h2').textContent;
+    const content = element.querySelector('p').textContent;
+
+    if ((!title, !content)) {
+      return;
+    }
+
+    setCurrentPost({
+      title: title,
+      content: content
+    });
+
+    setShowModal(!showModal);
+  };
+
+  useEffect(() => {
     axios
       .get('/api/post/all')
       .then((res) => {
@@ -17,23 +36,6 @@ const Blog = () => {
       .catch((err) => {
         console.log(`Something went wrong ${err}`);
       });
-  };
-
-  const getPostData = (e) => {
-    const dataElement = e.target.closest('[data-id]').dataset;
-    const stringId = dataElement.id;
-
-    axios
-      .get(`/api/post/${stringId}`)
-      .then((res) => {
-        console.log(res.data);
-        setCurrentPost(res.data);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  useEffect(() => {
-    loadPosts();
   }, []);
 
   return (
@@ -49,7 +51,7 @@ const Blog = () => {
             key={posts._id}
             data-id={posts._id}
             id={posts._id}
-            onClick={getPostData}
+            onClick={handleModal}
           >
             <section
               className='flex flex-col justify-end p-10 h-[600px] my-16 custom-card'
@@ -69,7 +71,11 @@ const Blog = () => {
           </div>
         );
       })}
-      <BlogModal currentPost={currentPost} posts={post} />
+      <BlogModal
+        title={currentPost.title}
+        content={currentPost.content}
+        showModal={showModal}
+      />
     </>
   );
 };
