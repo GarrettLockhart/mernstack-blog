@@ -1,16 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import imgPlaceholder from '../../img/blog-post-placeholder.jpeg';
 import axios from 'axios';
-import BlogModal from '../modals/BlogModal';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
 
-const Blog = () => {
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4
+};
+
+const Blog = (props) => {
   const [post, setPost] = useState([]);
 
   const [currentPost, setCurrentPost] = useState({});
 
-  const [showModal, setShowModal] = useState(false);
+  const [open, setOpen] = useState(false);
+  const handleClose = () => setOpen(false);
 
-  const handleModal = (e) => {
+  const handleOpen = (e, open) => {
     const element = e.target.closest('[data-id]');
     const title = element.querySelector('h2').textContent;
     const content = element.querySelector('p').textContent;
@@ -24,7 +39,7 @@ const Blog = () => {
       content: content
     });
 
-    setShowModal(!showModal);
+    setOpen(!open);
   };
 
   useEffect(() => {
@@ -50,8 +65,7 @@ const Blog = () => {
             className='container mx-auto blog-modal'
             key={posts._id}
             data-id={posts._id}
-            id={posts._id}
-            onClick={handleModal}
+            onClick={handleOpen}
           >
             <section
               className='flex flex-col justify-end p-10 h-[600px] my-16 custom-card'
@@ -62,20 +76,35 @@ const Blog = () => {
               }}
             >
               <div className='bg-gray-200 rounded-lg py-3 px-5'>
-                <h2 className='text-black text-xl font-bold'>{posts.title}</h2>
+                <h2 className='text-black text-xl font-bold'>
+                  {currentPost.title}
+                </h2>
                 <p className='text-black text-md custom-para'>
-                  {posts.content}
+                  {currentPost.content}
                 </p>
               </div>
             </section>
           </div>
         );
       })}
-      <BlogModal
-        title={currentPost.title}
-        content={currentPost.content}
-        showModal={showModal}
-      />
+
+      <div>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby='modal-modal-title'
+          aria-describedby='modal-modal-description'
+        >
+          <Box sx={style}>
+            <Typography id='modal-modal-title' variant='h6' component='h2'>
+              {currentPost.title}
+            </Typography>
+            <Typography id='modal-modal-description' sx={{ mt: 2 }}>
+              {currentPost.content}
+            </Typography>
+          </Box>
+        </Modal>
+      </div>
     </>
   );
 };
